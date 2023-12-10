@@ -5,13 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTNL CSS Review</title>
+    <style>
+        /* This is a CSS comment. */
+        .red-button {
+            background-color: red;
+            color: white;
+            border: none;
+        }
 
+        .yellow-button {
+            background-color: yellow;
+            color: black;
+            border: none;
+        }
+    </style>
 </head>
 
 <body>
-
+    <!-- This is an HTML comment. -->
+    <button title="Good Job!" class="red-button" onclick="alert('Good Job!')">Hello</button>
+    <p>
+        Paragraph of <button class="yellow-button">Hello</button> text
+    </p>
     <script>
+        // This is a JavaScript comment.
+        // alert('hello world');
 
+        /*
+            This is multiline
+            JavaScript comment
+        */
+        console.log(2 + 2);
+        console.log('some' + 'text');
     </script>
 </body>
 
