@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise</title>
+</head>
+
+<body>
+    <script>
+        function greet(name = 'World') {
+            console.log(`Hello ${name}`);
+        }
+        greet('Simon');
+        greet();
+
+        function convertToFarhenheit(celsius) {
+            return (celsius * 9 / 5) + 32;
+        }
+        console.log(convertToFarhenheit(25));
+
+        function convertToCelsius(farhenheit) {
+            return (farhenheit - 32) * 5 / 9;
+        }
+        console.log(convertToCelsius(86));
+
+        function convertTemprature(degree, unit) {
+            if (unit === 'C') {
+                return convertToFarhenheit(degree);
+            } else if (unit === 'F') {
+                return convertToCelsius(degree);
+            }
+        }
+        console.log(convertTemprature(25, 'C'));
+        console.log(convertTemprature(86, 'F'));
+    </script>
+</body>
+
+</html>
