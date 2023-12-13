@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+    <h1>Rock Paper Scissors</h1>
+
+    <button onclick=" playGame('heads');">heads</button>
+    <button onclick=" playGame('tails');">tails</button>
+
+    <script>
+        score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0 }
+        function playGame(guess) {
+            const randomNumber = Math.random();
+            let result = '';
+
+            randomNumber < 0.5 ? result = 'heads' : result = 'tails';
+            guess === result ? score.wins++ : score.losses++;
+
+            console.log(score);
+            localStorage.setItem('score', JSON.stringify(score));
+        }
+    </script>
+</body>
+
+</html>
