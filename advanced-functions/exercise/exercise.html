@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise</title>
+</head>
+
+<body>
+    <button class="js-start-button" onclick="clickStart();">Start</button>
+    <hr>
+    <button class="js-addtocart-button" onclick="clickAddToCart();">Add to cart</button>
+    <p class="js-message"></p>
+    <hr>
+    <button class="js-add-button" onclick="addOneToMessage();">Add</button>
+    <button class="js-remove-button" onclick="removeOneFromMessage();">Remove</button>
+    <script>
+        const add = function () {
+            console.log(2 + 3);
+        };
+        add();
+        add();
+
+        function runTwice(fun) {
+            fun();
+            fun();
+        }
+        runTwice(function () { console.log('12b'); });
+        runTwice(add);
+
+        function clickStart() {
+            const startButton = document.querySelector('.js-start-button');
+            startButton.innerHTML = 'Loading...';
+            setTimeout(function () {
+                startButton.innerHTML = 'Finished!';
+            }, 1000);
+        }
+
+        let timeout;
+        function clickAddToCart() {
+            const message = document.querySelector('.js-message');
+            clearTimeout(timeout);
+            message.innerHTML = 'Added';
+            timeout = setTimeout(function () {
+                message.innerHTML = '';
+            }, 2000);
+        }
+
+        let message = 0;
+        function addOneToMessage() {
+            message++;
+        }
+        function removeOneFromMessage() {
+            message--;
+        }
+        const title = document.title;
+        setInterval(function () {
+            if (document.title === title) {
+                document.title = `(${message}) new messages`;
+            } else {
+                document.title = title;
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
