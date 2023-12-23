@@ -11,15 +11,19 @@ function autoPlay() {
             playGame(playerMove);
         }, 1000);
         isAutoPlaying = true;
+        autoPlayButton = document.querySelector('.js-auto-play-button').innerHTML = 'Stop Playing';
     } else {
         clearInterval(intervalId);
         isAutoPlaying = false;
+        autoPlayButton = document.querySelector('.js-auto-play-button').innerHTML = 'Auto Play';
     }
 }
 
 document.querySelector('.js-rock-button').addEventListener('click', () => playGame('rock'));
 document.querySelector('.js-paper-button').addEventListener('click', () => playGame('paper'));
 document.querySelector('.js-scissors-button').addEventListener('click', () => playGame('scissors'));
+document.querySelector('.js-auto-play-button').addEventListener('click', () => autoPlay());
+document.querySelector('.js-reset-score-button').addEventListener('click', () => showResetConfirmation());
 
 document.body.addEventListener('keydown', (event) => {
     if (event.key === 'r') {
@@ -28,6 +32,10 @@ document.body.addEventListener('keydown', (event) => {
         playGame('paper');
     } else if (event.key === 's') {
         playGame('scissors');
+    } else if (event.key === 'a') {
+        autoPlay();
+    } else if (event.key === 'Backspace') {
+        showResetConfirmation();
     }
 });
 
@@ -94,4 +102,28 @@ function PickComputerMove() {
         computerMove = 'scissors';
     }
     return computerMove;
+}
+
+function resetScore() {
+    score = { wins: 0, losses: 0, ties: 0 };
+    localStorage.setItem('score', JSON.stringify(score));
+    updateScoreElemetn();
+}
+
+function showResetConfirmation() {
+    document.querySelector('.js-reset-confirmation').innerHTML = `
+        Are you sure you want to reset the score?
+        <button class="js-reset-confirm-yes">Yes</button>
+        <button class="js-reset-confirm-no">No</button>`;
+    document.querySelector('.js-reset-confirm-yes').addEventListener('click', () => {
+        resetScore();
+        hideResetConfirmation();
+    });
+    document.querySelector('.js-reset-confirm-no').addEventListener('click', () => {
+        hideResetConfirmation();
+    });
+}
+
+function hideResetConfirmation() {
+    document.querySelector('.js-reset-confirmation').innerHTML = '';
 }
